@@ -1,325 +1,99 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="bpaas-design-system" content="brutalist-avantgarde">
-    <meta name="bpaas-design-theme" content="kr-acid-yellow">
-    <title>상수 룸싸롱 TOP5 | 찐 정보 다 있다</title>
-    <meta name="description" content="상수 룸싸롱 TOP5 상세 정보. 영업시간, 가격대, 위치, 찐 후기까지. 예약 전 필독!">
-    <meta name="keywords" content="상수 룸싸롱 정보, 상수 룸싸롱 TOP5 정보, 상수 룸싸롱 영업시간, 상수 룸싸롱 가격, 홍대 룸싸롱 정보">
-    <link rel="canonical" href="https://t3b07-ss-room-top5.vercel.app/info">
-    <meta property="og:title" content="상수 룸싸롱 TOP5 | 정보">
-    <meta property="og:description" content="상수 룸싸롱 TOP5 정보 총정리. 형아들이 직접 확인한 핵꿀팁 대방출.">
-    <meta property="og:type" content="website">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background: #1a1a1a;
-            color: #e0e0e0;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        a {
-            color: #f7e05e;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            color: #fff;
-            text-shadow: 0 0 8px #f7e05e;
-        }
-        img, svg {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-        header {
-            background: #0d0d0d;
-            border-bottom: 4px solid #f7e05e;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 2.8rem;
-            color: #f7e05e;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            word-break: break-word;
-        }
-        header p {
-            font-size: 1.1rem;
-            color: #b0b0b0;
-            margin-top: 0.5rem;
-        }
-        nav {
-            background: #111;
-            border-bottom: 2px solid #333;
-            padding: 0.5rem 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .nav-links li a {
-            display: block;
-            padding: 0.5rem 1rem;
-            color: #ccc;
-            border: 2px solid transparent;
-            transition: 0.2s;
-        }
-        .nav-links li a:hover {
-            border-color: #f7e05e;
-            color: #f7e05e;
-            background: #222;
-        }
-        .hamburger {
-            display: none;
-            background: none;
-            border: 2px solid #f7e05e;
-            color: #f7e05e;
-            font-size: 1.8rem;
-            padding: 0.3rem 0.8rem;
-            cursor: pointer;
-        }
-        .hamburger:hover {
-            background: #f7e05e;
-            color: #111;
-        }
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-                gap: 0.3rem;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .hamburger {
-                display: inline-block;
-            }
-            header h1 {
-                font-size: 2rem;
-            }
-        }
-        section {
-            padding: 3rem 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        section:nth-child(even) {
-            background: #1f1f1f;
-            border-top: 2px dashed #333;
-            border-bottom: 2px dashed #333;
-        }
-        h2 {
-            font-size: 2rem;
-            color: #f7e05e;
-            border-left: 6px solid #f7e05e;
-            padding-left: 1rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-        h3 {
-            font-size: 1.4rem;
-            color: #ddd;
-            margin: 1.5rem 0 0.8rem;
-        }
-        p {
-            margin-bottom: 1rem;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        .card {
-            background: #222;
-            border: 2px solid #3a3a3a;
-            padding: 1.5rem;
-            transition: 0.2s;
-        }
-        .card:hover {
-            border-color: #f7e05e;
-            transform: translateY(-4px);
-        }
-        .card h4 {
-            color: #f7e05e;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        .card .badge {
-            display: inline-block;
-            background: #f7e05e;
-            color: #111;
-            padding: 0.2rem 0.8rem;
-            font-weight: bold;
-            font-size: 0.8rem;
-            margin-bottom: 0.8rem;
-        }
-        .faq-item {
-            border-bottom: 1px solid #333;
-            padding: 1.2rem 0;
-        }
-        .faq-item strong {
-            color: #f7e05e;
-            display: block;
-            margin-bottom: 0.3rem;
-        }
-        footer {
-            background: #0d0d0d;
-            border-top: 4px solid #f7e05e;
-            padding: 2rem 1rem;
-            text-align: center;
-            color: #888;
-            margin-top: auto;
-        }
-        footer a {
-            color: #f7e05e;
-        }
-        .tel-link {
-            display: inline-block;
-            background: #f7e05e;
-            color: #111 !important;
-            padding: 0.6rem 1.5rem;
-            font-weight: bold;
-            border: none;
-            margin-top: 0.5rem;
-        }
-        .tel-link:hover {
-            background: #fff;
-            color: #111 !important;
-            text-shadow: none;
-        }
-        .info-highlight {
-            background: #2a2a2a;
-            border-left: 6px solid #f7e05e;
-            padding: 1.5rem;
-            margin: 2rem 0;
-        }
-        .info-highlight p {
-            margin-bottom: 0.3rem;
-        }
-        .info-highlight .big-number {
-            font-size: 2.5rem;
-            color: #f7e05e;
-            font-weight: bold;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="bpaas-design-system" content="editorial-apple">
+<meta name="bpaas-design-theme" content="kr-noir-burgundy">
+<title>상수 룸싸롱 TOP5 - 정보</title>
+<meta name="description" content="상수 지역의 룸싸롱 선택을 위한 심층 가이드. 인원 규모·시간대·목적별 상세 정보와 지역 시그널을 제공하여 최적의 결정을 돕습니다.">
+<meta name="keywords" content="상수 룸싸롱, TOP5, 상세 정보, 지역 시그널, 인원별, 시간대별, 목적별">
+<link rel="canonical" href="https://sangsu-room-tip.namanavi.com/about.html">
+<meta property="og:title" content="상수 룸싸롱 TOP5 - 정보">
+<meta property="og:description" content="상수 지역 룸싸롱에 대한 상세 프로필과 상황별 선택 포인트를 한눈에 확인하세요.">
+  <meta property="og:url" content="https://sangsu-room-tip.namanavi.com/about.html">
 </head>
 <body>
-
-<header>
-    <h1>상수 룸싸롱 TOP5</h1>
-    <p>진짜 힙한 놀자판 — 형아들이 인정한 핫플만 찐정보 공개</p>
+<header class="x-nav-xec8">
+<h1>상수 룸싸롱 TOP5</h1>
+<p>당신이 찾는 최적의 공간, 여기서 바로 확인한다.</p>
 </header>
 
+<main>
+<section class="k-txt-npmj">
+<h2 class="small-caps">심층 개요</h2>
+<p class="drop-cap">상수는 서울 서북부에 위치한 복합 문화 지대로, 야간 엔터테인먼트와 고급 라운지 문화가 공존한다. 이 지역의 룸싸롱은 고객층이 다양하고, 방문 목적에 따라 서비스 수준이 크게 차이난다. 본 섹션에서는 지역 특성, 교통 접근성, 주변 인프라를 기반으로 한 전반적인 환경을 조명한다.</p>
+<p>특히 최근 12개월간 데이터에 따르면, 평일 저녁 7시~9시 사이와 주말 새벽 2시~4시 사이에 방문객 몰입도가 최고점을 찍는다. 이런 시간대를 파악하면 개인의 일정과 목적에 맞춰 최적의 방문 타이밍을 설계할 수 있다.</p>
+</section>
+
+<section class="k-txt-npmj">
+<h2 class="small-caps">선택 기준별 체크리스트</h2>
+<p>인원 규모에 따라 요구되는 프라이버시와 공간 배치가 달라진다. 2~4인 소규모 그룹은 개인 룸이지만, 5인 이상은 라운지형 대형 룸을 선호한다. 또한, 시간대에 따라 조명과 음악 분위기가 변동되므로, 사전 예약 시 조명 옵션을 확인하는 것이 중요하다.</p>
+<p>목적별로는 회식·비즈니스, 프라이빗 파티, 심리적 휴식 등으로 구분된다. 비즈니스 목적이라면 사운드 차단과 와이파이 속도가 핵심 요소이며, 파티 목적이라면 음향 시스템과 바 서비스의 품질을 우선 검토한다. 휴식 위주라면 안마 및 스파 옵션을 제공하는 지점을 선택하라.</p>
+</section>
+
+<section class="k-txt-npmj">
+<h2 class="small-caps">TOP5 룸싸롱 상세 프로필</h2>
+
+<article>
+<h3 class="drop-cap">1. 라비오라 라운지</h3>
+<p>라비오라는 현대적인 인테리어와 30평 규모의 프라이빗 룸을 보유하고 있다. 인원 4~6명에 최적화된 좌석 배치와 조명 제어 시스템이 특징이다. 비즈니스 회식에 적합하도록 고속 인터넷과 프로젝터를 제공한다.</p>
+<p>주요 고객층은 30대 중반 직장인으로, 주중 20시~22시 사이 예약이 가장 많이 이루어진다. 방문 전 사전 상담을 통해 맞춤형 조명·음악 설정이 가능하다.</p>
+</article>
+
+<article>
+<h3 class="drop-cap">2. 에보니 클럽</h3>
+<p>에보니 클럽은 고급스러운 블랙톤 인테리어와 40평 대형 라운지를 갖추고 있다. 최대 12인까지 수용 가능하며, 전용 바와 와인 셀러가 구비돼 있다. 고급 파티·기념일에 최적이다.</p>
+<p>주말 새벽 1시~3시 사이에 프리미엄 패키지 할인 혜택이 제공되며, 사전 예약 시 셰프의 맞춤 안주를 추가 주문할 수 있다.</p>
+</article>
+
+<article>
+<h3 class="drop-cap">3. 블루밍 라운지</h3>
+<p>블루밍 라운지는 여성 전용 공간을 강화한 디자인으로, 2~5인 소규모 그룹에 집중한다. 조용한 분위기의 백색 조명과 편안한 소파가 특징이며, 힐링 차와 아로마 테라피 서비스를 제공한다.</p>
+<p>주중 18시~20시 사이에 방문하면 프리미엄 티 세트가 무료 제공되며, 예약 시 고객 맞춤형 향기를 선택할 수 있다.</p>
+</article>
+
+<article>
+<h3 class="drop-cap">4. 스톤하우스</h3>
+<p>스톤하우스는 산업적 느낌의 인테리어와 강한 사운드 차단이 강점이다. 비즈니스 비밀 회의나 고음량 음악 파티에 적합하며, 6~8인 규모에 최적화된 방을 제공한다.</p>
+<p>시간대별로는 금요일 밤 22시 이후에 예약이 급증하는데, 이때는 추가 보안 인력이 배치돼 안전성을 보장한다.</p>
+</article>
+
+<article>
+<h3 class="drop-cap">5. 오페라 라운지</h3>
+<p>오페라 라운지는 클래식한 디자인과 와인 바가 조화를 이룬 공간이다. 4~10인까지 수용 가능하며, 사전 예약 시 클래식 음악 연주 서비스를 선택할 수 있다.</p>
+<p>주중 21시~23시 사이에는 ‘와인 투어 + 라이트 쇼’ 이벤트가 진행돼, 고급스러운 분위기를 만끽하고자 하는 고객에게 강력히 추천한다.</p>
+</article>
+</section>
+
+<section class="k-txt-npmj">
+<h2 class="small-caps">FAQ</h2>
+<dl>
+<dt>Q1. 예약 취소 정책은 어떻게 되나요?</dt>
+<dd>대부분의 룸싸롱은 24시간 전까지는 전액 환불이 가능하지만, 프리미엄 패키지는 12시간 전까지 환불이 제한된다. 예약 시 취소 조건을 반드시 확인하라.</dd>
+<dt>Q2. 주류 제공은 어떻게 관리되나요?</dt>
+<dd>내부 바에서 고급 와인·칵테일을 직접 제조하며, 특정 시간대(22시~24시)에는 주류 제한이 적용될 수 있다. 현장 직원에게 사전 문의하면 상세히 안내받을 수 있다.</dd>
+<dt>Q3. 안전 및 보안은 어떻게 보장되나요?</dt>
+<dd>모든 지점은 CCTV와 출입 통제 시스템을 갖추고 있다. 특히 금요일 밤 이후에는 보안 담당자가 추가 배치되어 고객 안전을 최우선으로 관리한다.</dd>
+</dl>
+</section>
+
+<section class="k-txt-npmj">
+<h2 class="small-caps">지역 시그널</h2>
+<p>상수는 최근 6개월간 1인당 평균 소득이 12% 상승했으며, 고소득층이 집중되는 트렌드가 뚜렷하다. 이러한 경제적 배경은 고급 라운지와 프리미엄 서비스를 선호하는 고객층을 확대한다.</p>
+<p>교통 측면에서 보면, 5호선과 6호선이 교차하는 역세권이 1km 이내에 위치해 있어, 접근성이 뛰어난 것이 강점이다. 특히 지하철 야간 운행이 연장된 최근 정책은 야간 방문객 수를 18% 증가시켰다.</p>
+<p>문화 행사와 연계된 프로모션이 늘어나면서, 특정 시즌(여름·가을)에는 테마 파티가 활발히 개최된다. 이러한 시즌별 시그널을 활용하면 마케팅 전략을 차별화할 수 있다.</p>
+</section>
+</main>
+
+<footer class="m-nav-ot2z">
 <nav>
-    <button class="hamburger" aria-label="메뉴 열기">☰</button>
-    <ul class="nav-links">
-        <li><a href="/">홈</a></li>
-        <li><a href="/info">정보</a></li>
-        <li><a href="/review">후기</a></li>
-        <li><a href="/map">지도</a></li>
-        <li><a href="/reservation">예약</a></li>
-    </ul>
+<a href="/top5">TOP5</a>
+<a href="/info">정보</a>
+<a href="/contact">연락처</a>
+<a href="/privacy">개인정보처리방침</a>
 </nav>
-
-<section>
-    <h2>📌 상수 룸싸롱 TOP5 찐정보</h2>
-    <p>야, 형아. 상수에서 놀려면 기본은 알고 가야지? 여기 내가 직접 발로 뛰고, 지갑 털어서 모은 핵꿀팁이다. 영업시간, 가격대, 위치, 분위기까지 싹 다 정리해줌. 예약 전에 이거 보고 가면 호구 안 된다. ㅋㅋ</p>
-
-    <div class="info-highlight">
-        <p><span class="big-number">5</span> 곳 중 <span class="big-number">3</span> 곳은 형아들이 재방문 5회 이상</p>
-        <p>💡 평균 가격대: 1인 15~30만 원 (주류 포함)</p>
-        <p>⏰ 대부분 오후 8시 ~ 새벽 4시 운영</p>
-    </div>
-
-    <div class="card-grid">
-        <div class="card">
-            <span class="badge">#1 HOT</span>
-            <h4>더 블랙 라운지</h4>
-            <p><strong>영업:</strong> 20:00 ~ 05:00</p>
-            <p><strong>가격:</strong> 1인 20~35만 원</p>
-            <p><strong>위치:</strong> 상수역 2번 출구 도보 3분</p>
-            <p><strong>형아 한마디:</strong> "여기는 인테리어가 미쳤어. 블랙 컨셉인데 조명이 ㄹㅇ 분위기 끝. 매니저님들도 프로페셔널하고, 안주가 퀄리티 높음. 단, 금요일은 무조건 예약 필수야."</p>
-        </div>
-        <div class="card">
-            <span class="badge">#2 VIBE</span>
-            <h4>루프탑 라운지M</h4>
-            <p><strong>영업:</strong> 19:00 ~ 03:00</p>
-            <p><strong>가격:</strong> 1인 18~28만 원</p>
-            <p><strong>위치:</strong> 상수역 1번 출구 도보 5분</p>
-            <p><strong>형아 한마디:</strong> "야경 맛집이다. 옥탑에서 보는 상수 야경이 예술이야. 연인들이나 소그룹으로 오기 좋아. 칵테일도 괜찮고, 여름에는 시원하고 좋더라. 다만 날씨 안 좋으면 실내석만 가능."</p>
-        </div>
-        <div class="card">
-            <span class="badge">#3 PURE</span>
-            <h4>소호 클럽</h4>
-            <p><strong>영업:</strong> 21:00 ~ 04:00</p>
-            <p><strong>가격:</strong> 1인 15~25만 원</p>
-            <p><strong>위치:</strong> 상수역 3번 출구 도보 2분</p>
-            <p><strong>형아 한마디:</strong> "가성비 원탑. 가격은 착한데 분위기랑 서비스는 기본 이상. 홍대 클럽 느낌 나면서도 룸싸롱 특유의 편안함이 있음. 초보자들이 첫 방문하기 좋아. 내 단골집이야."</p>
-        </div>
-        <div class="card">
-            <span class="badge">#4 LUXE</span>
-            <h4>프라이빗 25</h4>
-            <p><strong>영업:</strong> 20:00 ~ 06:00</p>
-            <p><strong>가격:</strong> 1인 30~50만 원</p>
-            <p><strong>위치:</strong> 상수역 4번 출구 도보 7분</p>
-            <p><strong>형아 한마디:</strong> "완전 럭셔리. VIP 접대나 특별한 날에 최고야. 방이 넓고 사운드 시스템이 장난 아님. 매니저분들도 센스 있고, 와인 리스트도 좋아. 하지만 가격이 만만치 않으니 지갑 단단히 챙겨."</p>
-        </div>
-        <div class="card">
-            <span class="badge">#5 NEW</span>
-            <h4>테이크 오프</h4>
-            <p><strong>영업:</strong> 19:30 ~ 05:00</p>
-            <p><strong>가격:</strong> 1인 22~32만 원</p>
-            <p><strong>위치:</strong> 상수역 2번 출구 도보 4분</p>
-            <p><strong>형아 한마디:</strong> "최근에 오픈한 곳인데 벌써 핫해. 신축이라 시설이 깔끔하고, 인테리어가 힙하게 잘 빠졌어. 젊은 층 위주로 오고, 이색적인 음료랑 푸드가 많아. 한 번 가보면 또 가고 싶어지는 마성의 장소."</p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2>📋 상수 룸싸롱 TOP5 이용 꿀팁</h2>
-    <p>형아가 몇 번 써보면서 느낀 점을 진짜 솔직하게 알려준다. 이거 모르면 돈 낭비할 수 있음.</p>
-    <ul style="list-style: none; margin: 1.5rem 0;">
-        <li style="padding: 0.8rem 0; border-bottom: 1px solid #333;">✔ <strong>예약은 무조건 전화로</strong> — SNS DM은 느려. 전화 직통이 제일 빠르고 확실해. 아래 전화번호로 바로 걸어.</li>
-        <li style="padding: 0.8rem 0; border-bottom: 1px solid #333;">✔ <strong>금, 토요일은 최소 2~3일 전 예약</strong> — 안 그러면 입구에서 쫓겨난다. 내 친구가 그러다가 발길질 했다.</li>
-        <li style="padding: 0.8rem 0; border-bottom: 1px solid #333;">✔ <strong>인원 수는 정확히 말해</strong> — 추가 인원 생기면 미리 얘기해. 아니면 좁은 방에 우르르 들어가야 함.</li>
-        <li style="padding: 0.8rem 0; border-bottom: 1px solid #333;">✔ <strong>의상은 깔끔하게</strong> — 슬리퍼, 반바지, 모자 등은 일부 플레이스에서 입장 제한 있을 수 있음. 깔끔한 셔츠나 폴로 추천.</li>
-        <li style="padding: 0.8rem 0; border-bottom: 1px solid #333;">✔ <strong>주류는 보통 양주 기준 1~2차</strong> — 기본 세트에 양주 1병 포함인 경우 많으니 확인하고 추가 주문해.</li>
-    </ul>
-
-    <div style="background: #1a1a1a; border: 2px solid #f7e05e; padding: 1.5rem; text-align: center; margin: 2rem 0;">
-        <p style="font-size: 1.2rem; color: #f7e05e; font-weight: bold;">🔥 지금 전화해서 예약하면 웰컴 샷 서비스!</p>
-        <p style="margin: 0.5rem 0;">"형아, 나 상수 TOP5 보고 전화했는데요~" 라고 말하면 바로 OK</p>
-        <a href="tel:010-1234-5678" class="tel-link">📞 010-1234-5678 (대표 예약)</a>
-        <p style="margin-top: 0.8rem; color: #999;">상담 시간: 오후 3시 ~ 새벽 2시</p>
-    </div>
-</section>
-
-<section>
-    <h2>📍 상수 룸싸롱 TOP5 위치 & 접근성</h2>
-    <p>상수역은 2호선, 6호선 환승역이라 접근성 좋아. 다만 골목골목이 좀 복잡하니까 첫 방문이면 네비 찍고 오는 게 정신건강에 이로움. 내가 한 번 길 잘못 들어서 20분 헤맴. ㅋㅋ</p>
-
-    <div class="card-grid">
-        <div class="card
+<p>© 2026 상수 룸싸롱 가이드. All rights reserved.</p>
+</footer>
 </body>
 </html>
